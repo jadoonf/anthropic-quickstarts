@@ -1,0 +1,6 @@
+node_modules
+.env
+*/node_modules
+*/jest.setup.js
+*/tests/mocks/mock.ts
+*/tests/mocks/mock.tsx
