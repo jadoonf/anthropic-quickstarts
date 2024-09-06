@@ -13,12 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - uses: listendev/action@v0.10
-        with:
-          jwt: ${{ secrets.LS }}
-          ci: only
-
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -26,12 +20,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.17.0'
-
+      - uses: listendev/action@v0.10
+        with:
+          jwt: ${{ secrets.LS }}
+          ci: only
+          workdir: ./customer-support-agent
+          
       - name: Install dependencies
         run: npm install
+        working-directory: customer-support-agent
 
       - name: Build project
         run: npm run build
+        working-directory: customer-support-agent
 
       - name: Run tests
         run: npm test
+        working-directory: customer-support-agent
+
